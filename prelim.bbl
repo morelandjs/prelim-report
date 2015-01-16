@@ -6,7 +6,7 @@
 %Control: page (0) single
 %Control: year (1) truncated
 %Control: production of eprint (0) enabled
-\begin{thebibliography}{0}%
+\begin{thebibliography}{5}%
 \makeatletter
 \providecommand \@ifxundefined [1]{%
  \@ifx{#1\undefined}
@@ -50,4 +50,46 @@
 \providecommand \BibitemShut  [1]{\csname bibitem#1\endcsname}%
 \let\auto@bib@innerbib\@empty
 %</preamble>
+\bibitem [{\citenamefont {Heinz}(2004)}]{Heinz:2004qz}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {U.~W.}\ \bibnamefont
+  {Heinz}},\ }\href@noop {} {\ ,\ \bibinfo {pages} {165} (\bibinfo {year}
+  {2004})},\ \Eprint {http://arxiv.org/abs/hep-ph/0407360}
+  {arXiv:hep-ph/0407360 [hep-ph]} \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/0407360;%%
+\bibitem [{\citenamefont {Adams}\ \emph {et~al.}(2005)\citenamefont {Adams}
+  \emph {et~al.}}]{Adams:2005dq}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Adams}} \emph {et~al.} (\bibinfo {collaboration} {STAR Collaboration}),\
+  }\href {\doibase 10.1016/j.nuclphysa.2005.03.085} {\bibfield  {journal}
+  {\bibinfo  {journal} {Nucl.Phys.}\ }\textbf {\bibinfo {volume} {A757}},\
+  \bibinfo {pages} {102} (\bibinfo {year} {2005})},\ \Eprint
+  {http://arxiv.org/abs/nucl-ex/0501009} {arXiv:nucl-ex/0501009 [nucl-ex]}
+  \BibitemShut {NoStop}%
+%%CITATION = NUCL-EX/0501009;%%
+\bibitem [{\citenamefont {Shuryak}(2005)}]{Shuryak:2004cy}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.~V.}\ \bibnamefont
+  {Shuryak}},\ }\href {\doibase 10.1016/j.nuclphysa.2004.10.022} {\bibfield
+  {journal} {\bibinfo  {journal} {Nucl.Phys.}\ }\textbf {\bibinfo {volume}
+  {A750}},\ \bibinfo {pages} {64} (\bibinfo {year} {2005})},\ \Eprint
+  {http://arxiv.org/abs/hep-ph/0405066} {arXiv:hep-ph/0405066 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/0405066;%%
+\bibitem [{BNL()}]{BNL}%
+  \BibitemOpen
+  \href@noop {} {\enquote {\bibinfo {title} {'perfect' liquid hot enough to be
+  quark soup},}\ }\bibinfo {howpublished}
+  {\url{http://www.bnl.gov/newsroom/news.php?a=11074}},\ \bibinfo {note}
+  {accessed: 2015-01-15}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Kolb}\ and\ \citenamefont
+  {Heinz}(2003)}]{Kolb:2003dz}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.~F.}\ \bibnamefont
+  {Kolb}}\ and\ \bibinfo {author} {\bibfnamefont {U.~W.}\ \bibnamefont
+  {Heinz}},\ }\href@noop {} {\  (\bibinfo {year} {2003})},\ \Eprint
+  {http://arxiv.org/abs/nucl-th/0305084} {arXiv:nucl-th/0305084 [nucl-th]}
+  \BibitemShut {NoStop}%
+%%CITATION = NUCL-TH/0305084;%%
 \end{thebibliography}%
