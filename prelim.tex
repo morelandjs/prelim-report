@@ -28,10 +28,10 @@
 \section{Introduction}
 
 Microseconds after the big bang, our universe was super heated to several trillion kelvin. In these extreme conditions, nuclear matter existed as a hot 
-soup of deconfined quarks and gluons. As the universe expanded and cooled, these colored degrees of freedom recombined to form colorless hadrons 
-(e.g. protons) and kickstarted the elaborate process of nucleosysnthesis \cite{Heinz:2004qz}.
+soup of deconfined quarks and gluons. As the universe expanded and cooled, these colored degrees of freedom recombined to 
+form colorless hadrons (e.g. protons) and kickstarted the elaborate process of nucleosysnthesis \cite{Heinz:2004qz}.
 
-Evidence for this high temperature phase of deconfined nuclear matter was first provided by researchers at the Relativisitic Heavy-Ion Collider (RHIC) 
+Evidence for this high temperature phase of deconfined nuclear matter was provided by researchers at the Relativisitic Heavy-Ion Collider (RHIC) 
 in Brookhaven, NY. Collisions of ultra-relativistic gold nuclei at RHIC produced hot and dense fireballs that exhibited strong signs of collective flow 
 \cite{Adams:2005dq}. These flow results were significantly stronger than those of lower energy nuclear collisions at the Super Proton Synchrotron (SPS) 
 \cite{Shuryak:2004cy}. This energy dependent growth in collectivity led RHIC scientists to announce indirect evidence for a new state of deconfined nuclear 
@@ -47,6 +47,8 @@ worked so well in describing the evolution of relativistic heavy-ion collisions 
 interest to extract the thermodynamic and transport properties of the QGP droplet produced in relativistic heavy-ion collisions, as such properties shed light on
 exotic regions of the nuclear phase diagram and improve our murky understanding of primordial matter in the big bang.
 
+\subsection{Extracting QGP properties}
+
 Fundamental QGP properties are extracted from computer simulations using a process known as model to data comparison. Theoretical guidance is used to construct
 realistic, albeit under constrained, hydrodynamic models for the full spacetime evolution of the produced fireball. These models generate events exactly as they might
 occur inside the detector and output moc experimental data. By comparing the model's moc data to experimental data, free parameters of the model are constrained. Such 
@@ -54,19 +56,32 @@ model to data comparisons thus provide valuable access to fundamental properties
 observed directly.
 
 In order to extract these properties accurately, it's important that the model admit a faithful description of reality. In this report we concentrate on improving 
-initial condition models used to describe the deposition of entropy in the hydrodynamic standard model. The veracity of these initial conditions governs the 
+initial condition models used to describe the deposition of entropy in relativistic hydrodynamic simulations. The veracity of these initial conditions governs the 
 predictive power of hydrodynamic model to data comparisons and consequently our understanding of fundamental QGP properties.
   
 \section{Relativistic nuclear collisions}
 
 Before talking about the specifics of hydrodynamic initial conditions and why they are important to QGP parameter extractions, it's useful to take a step back 
-and discuss in detail the current picture of relativistic heavy-ion collisions. For reasons which become clear in the following sections, I will drop the 
+and discuss in detail the current picture of relativistic heavy-ion collisions. For reasons which become clear in the following sections, I drop the 
 label ``heavy-ion'' and generalize the dicussion to arbitrary nucleus-nucleus collisions.
 
-\subsection{Collision geometry}
+\subsection{Collision and rapid thermalization}
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=\textwidth]{evolution} \\
+  0 fm/c   \hspace{.13\textwidth}
+  0.5 fm/c \hspace{.13\textwidth}
+  8 fm/c   \hspace{.13\textwidth}
+  16 fm/c  \hspace{.13\textwidth}
+  22 fm/c
+  \caption{placeholder \cite{iss}}
+  \label{fig:evolution}
+\end{figure*}
 
 Consider as an example two nuclei with atomic mass numbers $A_1$ and $A_2$ which have been accelerated to $\beta=0.9999$ times the speed of light and travel towards
-each other along the z-axis of an imaginary Cartesian coordinate system.
+each other along an imaginary beam axis. When viewed from the laboratory frame, the nuclei are Lorentz contracted along the beam-axis by a Gamma-factor 
+$\gamma \approx 70$ and thus appear highly compressed. 
 
 In the rest frame of each nucleus, the nuclei are described by the multi-body nuclear wavefunctions $\Psi_{A_1}$ and $\Psi_{A_2}$ with normalization condition  
 \begin{equation}
@@ -75,40 +90,142 @@ In the rest frame of each nucleus, the nuclei are described by the multi-body nu
 
 The act of collision collapses these wavefunctions and samples a discrete set of nucleon coordinates,
 \begin{equation}
- \Psi_{A_1} \rightarrow \{\vec{x_1},...,\vec{x}_{A_1}\} ~~~~ \mbox{and} ~~~~ \Psi_{A_2} \rightarrow \{\vec{x_1},...,\vec{x}_{A_2}\}.
+ \Psi_{A_1} \rightarrow \{\vec{x_1},...,\vec{x}_{A_1}\} ~~~~ \mbox{and} ~~~~ \Psi_{A_2} \rightarrow \{\vec{x_1},...,\vec{x}_{A_2}\}
 \end{equation}
+depicted\footnote{The simulation used to generate FIG. \ref{fig:evolution} admittedly resolves discrete nucleons before any collision has taken place.} in panel one 
+of FIG. \ref{fig:evolution}. These nucleon configurations may either partially or fully overlap in the moment of collision allowing for various numbers of nucleon 
+collisions in a single nucleus-nucleus collision. This first instant of impact defines the collision starting time $\tau=0$ fm/c in units of longitudinal proper time $\tau^2 = t^2-z^2$.
 
-To simplest approximation, the density of the collapsed nuclear wavefunction can be modeled in the rest frame of each nucleus as an incoherent superposition 
-of nucleon densities,
+The struck or ``wounded'' nucleons which participate in the collision penetrate each other in the first fraction of a fm/c and liberate quarks and gluons described by 
+their nuclear structure functions. These primary quarks and gluons generate secondary partons which are deposited in the plane transverse to the beam axis centered 
+at the collision epicenter. The exact physical processes describing these early-time dynamics remain poorly understood and numerous theoretical models exist. We 
+discuss two such models for initial particle production in section ?. 
+
+The initial partonic fireball at incremental time $\tau=0^+$ fm/c is lumpy in the transverse plane and flattened along the beam axis. Transverse fluctuations in the 
+density of produced partons reflect fluctuations in configurations of nucleons within the colliding nuclei. 
+
+The secondary energetic partons quickly rescatter and reach thermal equillibrium if the interactions are sufficiently strong. Studies suggest that thermalization 
+occurs rapidly in relativistic heavy-ion collisions and sets in around $\tau_{themal} \approx 0.6$ fm/c in $\sqrt{s} = 200$ GeV gold-gold collisions \cite{Heinz:2001xi}.
+
+\subsection{Hydrodynamic evolution}
+
+Once the system reaches thermalization, relativistic hydrodynamics can be used to evolve the thermalized state forward in time. The hydrodynamic equations of motion 
+are a set of conservation equations which conserve the flow of four-momentum and net baryon current,
 \begin{equation}
- \label{nuclear_density}
- \rho_{nucleus}(x,y,z) = \sum\limits_{i=1}^{A} \rho_{nucleon}(x-x_i,y-y_i,z-z_i).
+ \partial_\mu T^{\mu\nu} = 0 ~~~~~\mbox{and}~~~~~ \partial_\mu j_B^\mu = 0.
 \end{equation}
 
-When viewed from the laboratory frame, the nuclei described by equation \ref{nuclear_density} are Lorentz contracted along the z-axis by a Gamma-factor 
-$\gamma \approx 70$ and thus highly compressed. To simplify matters, we integrate out the z-dimension in eq. \ref{nuclear_density} entirely. 
-This defines the so-called nuclear thickness function,
+In the ideal (inviscid) limit, the energy momentum tensor and net baryon current can be decomposed as,
+\begin{eqnarray}
+ \cr T^{\mu\nu} &=& (\varepsilon + p) u^\mu u^\nu - p g^{\mu\nu} \\
+ j_B^\mu &=& n u^\mu
+\end{eqnarray}
+where $\varepsilon$ denotes the system's energy density, $p$ the pressure, $u^\mu$ the fluid four-velocity, $n$ the local baryon density and $g^{\mu\nu}$ the metric 
+tensor.
+
+Altogether we are left with $5$ equations of motion to describe $6$ field quantities ($\varepsilon$, $p$, $u^1$, $u^2$, $u^3$ and $n$).
+The system of equations is closed by adding an additional thermodynamic relation between two of the thermal field quantities, e.g. energy density and pressure. 
+This additional relation is known as the equation of state (EOS).
+
+Quite conveniently, the EOS of high temperature, thermal QCD is directly calculable from the QCD Lagrangian using the method of Lattice QCD. The partition function
+is expressed in terms of the vaccuum to vaccuum transition amplitude of quark and gluon fields in the Feynman path integral formalism and solved numerically on a
+discrete grid. Once the partition function is known, the energy density, entropy density, pressure and temperature are easily interrelated. 
+
+This high temperature EOS is used to model hot and dense regions of the fireball above the critical QGP phase transition temperature $T_c$. At low temperatures,
+the QGP EOS is matched to a hadron resonance gas EOS which describes the fluid dynamic behaviour of the QGP once it hadronize into a dillute gas of bound quark
+states. In this manner, the hydrodynamic model naturally describes the complicated dynamics of hadronization which are extremely difficult to model microscopically.
+
+\subsection{Transition to Boltzmann transport}
+
+\begin{figure*}
+ \includegraphics[height=0.2\textwidth]{collision1}
+ \includegraphics[height=0.2\textwidth]{collision2}
+ \includegraphics[height=0.2\textwidth]{collision3}
+ \includegraphics[height=0.2\textwidth]{collision4}
+ \caption{\label{fig:spacetime} placeholder}
+\end{figure*}
+
+As the system evolves hydrodynamically it expands and cools. The low temperature system eventually becomes that of a hadron resonance gas. While the QGP is a 
+roughly homogenous mixture of quarks and gluons, the hadron resonance gas is a complicated, heterogeneous mixture of hadrons and hadronic resonances. Inelastic collisions 
+amongst these particles alter the system's chemical composition and drive the system away from chemical equillibirum. 
+
+For these reasons, it is common to switch from hydrodynamics to a Boltzmann description below the QGP phase transition temperature $T_c$. Boltzmann dynamics naturally 
+incorporate chemical nonequillibrium and allow for a more detailed description of the system's low temperature evolution.
+
+To switch from hydrodynamic fields to discrete molecular dynamics, the hydrodynamic medium is first ``particleized''. Particles are sampled from the Cooper-Frye formula 
+which describes the particle spectra along a freeze-out hypersurface of constant temperature,
 \begin{equation}
- T_{A}(x,y) = \int dz\, \sum\limits_{i=1}^{A} \rho_{nucleon}(x-x_i,y-y_i,z-z_i).
+ \label{cooper_frye}
+ E \frac{dN_i}{d^3p} = \int_\sigma f_i(x,p) p^\mu d^3\sigma_\mu.
 \end{equation}
-A plot of the two-dimensional nuclear thickness functions for a gold-gold collision is pictured in FIG. \ref{fig:ipglamsa}.
+In equation \ref{cooper_frye}, $f_i$ is the particle distribution function, $p^\mu$ is the local fluid four-momentum and $d^3\sigma_\mu$ characterizes an element of the freezeout hypersurface. Equation
+\ref{cooper_frye} is integrated over the full freezeout hypersurface to sample particles from the fluid which are then piped into Boltzmann transport simulations.
 
+The Boltzmann equation simulates all elastic and inelastic collisions between the sampled particles until the system becomes too dillute to continue interacting. In symbollic
+form it can be written as,
+\begin{equation}
+ \label{boltzmann_eqn}
+ \frac{df_i(x,p)}{dt} = \mathcal{C}_i (x,p),
+\end{equation}
+where $f_i(x,p)$ is the distribution function of the $i^\mathrm{th}$ particle species and $\mathcal{C}_i$ is the corresponding collision kernel which describes all source 
+terms in a collision.
 
+After the particles finish interacting, their positions, momenta and particle ID's are recorded and stored to file. This moc experimental data is then compared with real
+data, and free parameters of the model are tuned to optimally replicate reality. The quantities of interest in such a procedure are thus under constrained parameters of 
+the model. 
 
-\begin{figure}
- \includegraphics[width=\columnwidth]{wgmu}
- \caption{\label{fig:ipglasma} Bjorn}
-\end{figure}
+In the next section, I talk about one such quantity, the hydrodynamic specific shear viscosity $\eta/s$ which arises from dissipative corrections to ideal hydrodynamics.
+Model to data extractions of $\eta/s$ indicate that the shear viscosity of the QGP is astonishingly small. Current estimates of the QGP shear viscosity place bounds $0.08 \le \eta/s \le 0.20$. For comparison, the values of $\eta/s$ 
+for water at room temperature are $\eta/s \approx 30$. The QGP has consequently been called the ``perfect fluid''. We discuss current methods for extracting $\eta/s$ from
+model to data comparisons and isolate the largest source of uncertainty in these extractions.
 
-\subsection{Spacetime evolution}
+\section{Modeling and the QGP viscosity}
 
-\section{Hydrodynamic initial conditions}
+When a nuclear collision is viewed along the beam axis, the nuclei collide and overlap in the plane orthogonal to the beam axis, offset by a random separation vector $b$ 
+(see FIG. 1a). The resulting almond shaped fireball is highly anisotropic and is described by energy density gradients which are larger along its short axis. These larger 
+energy density gradients generate larger pressure gradients and hence drive more flow. Consequently, the system flows faster along the short axis and g
 
-\section{Hydrodynamic initial conditions}
+Additional fluctuations in the distribution of nucleons within each nucleus distort the almond shape of the produced fireball. These fluctuations are uncorrelated with the 
+impact parameter geometry of the collision and hence cannot be characterized by a single elliptic shape. For example, it's entirely possible that random nucleon fluctuations
+generate a triangular fireball with corresponding triangular flow profile (FIG. 1b). 
 
-\section{Fluid dynamic simulations}
+It's worth stressing that this conversion from spatial anisotropy to flow anisotropy is a characteristic signature of hydrodynamic behaviour. The efficiency of conversion
+tells us about the strength of dissipative forces in the fluid, most notably the fluid viscosity.
 
-\begin{figure}
+\subsection{Viscosity from anisotropic flow}
+
+Hydrodynamic conversion from spatial anisotropy to momentum anisotropy becomes easier to quantify if we first decompose the initial and final states using an azimuthal 
+Fourier expansion. 
+
+The initial state spatial anisotropy is characterized by the Fourier eccentricity harmonics $\varepsilon_n$ given by,
+\begin{equation}
+ \varepsilon_n e^{-i n \Phi_n} = -\frac{\int dx\,dy\,r^n e^{i n \phi} s(x,y)}{\int dx\,dy\, r^n s(x,y)}
+\end{equation}
+where $n$ denotes the eccentrcity harmonic mode number, $\Phi_n$ denotes the direction of the steepest density gradient and $s(x,y)$ the event's transverse entropy density
+(often energy is used as well). Examples of eccentricity harmonics two, three, four and five are shown in FIG. \ref{fig:harmonics}.
+
+An analogous expansion for the final state flow anisotropy yields the flow coefficients $v_n$,
+\begin{equation}
+ v_n(y) e^{i n \Psi_n(y)} = \frac{\int p_T dp_T d\phi_p e^{i n \phi_p} \frac{dN}{dy p_T dp_T d\phi_p}}{\int p_T dp_T d\phi_p \frac{dN}{dy p_T dp_T d\phi_p}}
+\end{equation}
+where $n$ denotes the anisotropic flow mode number, $\Psi_n$ denotes the angle of maximum flow, $p_T$ a particle's transverse momentum and 
+$y=\tfrac{1}{2}\log(\tfrac{E+p_z}{E-p_z})$ its rapidity.
+
+Hydrodynamic expansion converts n-th order eccentricity $\varepsilon_n$ into n-th order harmonic flow $v_n$ with a conversion efficiency that's proportional to the fluid's
+specific shear viscosity $\eta/s$,
+\begin{equation}
+ \label{linear_response}
+ v_n \propto \eta/s \cdot \varepsilon_n.
+\end{equation}
+
+Thus \emph{if} one possessed a realistic initial condition model from which they could calculate the eccentricity harmonics $\varepsilon_n$, \emph{and} they had faith 
+in their hydrodynamic description of the produced plasma, \emph{then} they could calculate the flow harmonics $v_n$ from equation \ref{linear_response} for different values 
+of the QGP viscosity and find the one which optimally fits experimental flow measurements.
+
+Somewhat surprsingly, the biggest obstacle in this whole procedure is not the derivation of relativistic viscous hydrodynamics, or calculations of the lattice equation
+of state or even microscopic descriptions of the hadron resonance gas, it's a proper theoretical description of the initial state. 
+
+\begin{figure}[t]
  \includegraphics[width=0.15\columnwidth]{e2-crop} \hspace{.01\columnwidth} 
  \includegraphics[width=0.23\columnwidth]{e3-crop} \hspace{.01\columnwidth}
  \includegraphics[width=0.21\columnwidth]{e4-crop} \hspace{.01\columnwidth}
@@ -116,25 +233,16 @@ A plot of the two-dimensional nuclear thickness functions for a gold-gold collis
  \flushleft
  \vspace{-0.1in}
  \hspace{0.08\columnwidth} 2 \hspace{0.19\columnwidth} 3 \hspace{0.21\columnwidth} 4 \hspace{0.22\columnwidth} 5
- \caption{Diagrams of the second, third, fourth and fifth azimuthal Fourier harmonics. The angular resolution increases with increasing harmonic number.}
+ \caption{\label{fig:harmonics} Diagrams of the second, third, fourth and fifth azimuthal Fourier harmonics. The angular resolution increases with increasing harmonic number.}
 \end{figure}
 
-\begin{figure*}[t]
-  \centering
-  \includegraphics[width=\textwidth]{evolution} \\
-  0 fm/c   \hspace{.13\textwidth}
-  0.5 fm/c \hspace{.13\textwidth}
-  8 fm/c   \hspace{.13\textwidth}
-  16 fm/c  \hspace{.13\textwidth}
-  22 fm/c
-  \caption{Figure from \cite{iss}}
-  \label{fig:coll}
-\end{figure*}
+\subsection{Initial condition models}
 
 
-\begin{figure}
- \includegraphics[width=\columnwidth]{HIC}
-\end{figure}
+\subsection{Glauber Model}
+
+\subsection{Color-Glass Condensate}
+
 
 \begin{figure*}
  \includegraphics[width=\textwidth]{three}
@@ -152,14 +260,6 @@ A plot of the two-dimensional nuclear thickness functions for a gold-gold collis
 \begin{figure}
  \includegraphics[width=\columnwidth]{trento-profiles}
 \end{figure}
-
-\begin{figure*}
- \includegraphics[height=0.2\textwidth]{collision1}
- \includegraphics[height=0.2\textwidth]{collision2}
- \includegraphics[height=0.2\textwidth]{collision3}
- \includegraphics[height=0.2\textwidth]{collision4}
- \caption{\label{fig:spacetime} blah blah blah}
-\end{figure*}
 
 \begin{figure*}
  \includegraphics[width=\textwidth]{multdist}

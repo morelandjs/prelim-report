@@ -6,7 +6,7 @@
 %Control: page (0) single
 %Control: year (1) truncated
 %Control: production of eprint (0) enabled
-\begin{thebibliography}{5}%
+\begin{thebibliography}{6}%
 \makeatletter
 \providecommand \@ifxundefined [1]{%
  \@ifx{#1\undefined}
@@ -92,4 +92,15 @@
   {http://arxiv.org/abs/nucl-th/0305084} {arXiv:nucl-th/0305084 [nucl-th]}
   \BibitemShut {NoStop}%
 %%CITATION = NUCL-TH/0305084;%%
+\bibitem [{\citenamefont {Heinz}\ and\ \citenamefont
+  {Kolb}(2002)}]{Heinz:2001xi}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {U.~W.}\ \bibnamefont
+  {Heinz}}\ and\ \bibinfo {author} {\bibfnamefont {P.~F.}\ \bibnamefont
+  {Kolb}},\ }\href {\doibase 10.1016/S0375-9474(02)00714-5} {\bibfield
+  {journal} {\bibinfo  {journal} {Nucl.Phys.}\ }\textbf {\bibinfo {volume}
+  {A702}},\ \bibinfo {pages} {269} (\bibinfo {year} {2002})},\ \Eprint
+  {http://arxiv.org/abs/hep-ph/0111075} {arXiv:hep-ph/0111075 [hep-ph]}
+  \BibitemShut {NoStop}%
+%%CITATION = HEP-PH/0111075;%%
 \end{thebibliography}%
