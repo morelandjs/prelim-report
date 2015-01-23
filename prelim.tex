@@ -75,7 +75,8 @@ label ``heavy-ion'' and generalize the dicussion to arbitrary nucleus-nucleus co
   8 fm/c   \hspace{.13\textwidth}
   16 fm/c  \hspace{.13\textwidth}
   22 fm/c
-  \caption{placeholder \cite{iss}}
+  \caption{Computer simulation of a gold-gold collision at $\sqrt{s}=200$ GeV. Projectile nucleus (purple) collides with target nucleus (yellow) and produces a QGP (heat map). 
+  Red spheres indicate cooler hadron resonance gas. \cite{iss}.}
   \label{fig:evolution}
 \end{figure*}
 
@@ -142,7 +143,7 @@ states. In this manner, the hydrodynamic model naturally describes the complicat
  \includegraphics[height=0.2\textwidth]{collision2}
  \includegraphics[height=0.2\textwidth]{collision3}
  \includegraphics[height=0.2\textwidth]{collision4}
- \caption{\label{fig:spacetime} placeholder}
+ \caption{\label{fig:spacetime}}
 \end{figure*}
 
 As the system evolves hydrodynamically it expands and cools. The low temperature system eventually becomes that of a hadron resonance gas. While the QGP is a 
@@ -179,7 +180,7 @@ Model to data extractions of $\eta/s$ indicate that the shear viscosity of the Q
 for water at room temperature are $\eta/s \approx 30$. The QGP has consequently been called the ``perfect fluid''. We discuss current methods for extracting $\eta/s$ from
 model to data comparisons and isolate the largest source of uncertainty in these extractions.
 
-\section{Modeling and the QGP viscosity}
+\section{Constraining the QGP viscosity}
 
 When a nuclear collision is viewed along the beam axis, the nuclei collide and overlap in the plane orthogonal to the beam axis, offset by a random separation vector $b$ 
 (see FIG. 1a). The resulting almond shaped fireball is highly anisotropic and is described by energy density gradients which are larger along its short axis. These larger 
@@ -222,8 +223,8 @@ Thus \emph{if} one possessed a realistic initial condition model from which they
 in their hydrodynamic description of the produced plasma, \emph{then} they could calculate the flow harmonics $v_n$ from equation \ref{linear_response} for different values 
 of the QGP viscosity and find the one which optimally fits experimental flow measurements.
 
-Somewhat surprsingly, the biggest obstacle in this whole procedure is not the derivation of relativistic viscous hydrodynamics, or calculations of the lattice equation
-of state or even microscopic descriptions of the hadron resonance gas, it's a proper theoretical description of the initial state. 
+Somewhat surprisingly, the biggest obstacle in this whole procedure is not the derivation of relativistic viscous hydrodynamics, or calculations of the lattice equation
+of state or even microscopic descriptions of the hadron resonance gas - it's a description of the system's hydrodynamic initial conditions. 
 
 \begin{figure}[t]
  \includegraphics[width=0.15\columnwidth]{e2-crop} \hspace{.01\columnwidth} 
@@ -236,22 +237,188 @@ of state or even microscopic descriptions of the hadron resonance gas, it's a pr
  \caption{\label{fig:harmonics} Diagrams of the second, third, fourth and fifth azimuthal Fourier harmonics. The angular resolution increases with increasing harmonic number.}
 \end{figure}
 
-\subsection{Initial condition models}
+\section{Initial condition models}
 
+Hydrodynamic initial conditions describe the thermal state of the QGP fluid at the QGP thermalization time $\tau_{therm} \approx 0.6$ fm/c. These initial condition models
+fall into two general categories - dynamical models which calculate the initial state of the system at time $\tau=0$ fm/c and explicitly simulate the pre-equillibrium 
+dynamics which drive the system to thermalization, and effective models which omit early-time dynamics to generate profiles of energy or entropy \emph{at} the QGP thermalization time. 
+Historically, effective models have been preferred for their simplicity, and despite recent advances in pre-equillibirum transport theory, remain the most popular.
 
-\subsection{Glauber Model}
+\subsection{Glauber modeling}
 
-\subsection{Color-Glass Condensate}
+The most famous effective model for hydrodynamic initial conditions is the well known Glauber model. The Glauber model asserts that particle production in nucleus-nucleus 
+collisions scales with a linear combination of ``hard'' and ``soft'' collision processes. 
 
+For hard processes, it's natural to assume that the number of produced particles scales with the number of binary nucleon-nucleon collisions. Hard processes correspond
+to large momentum transfer and are well localized in the collision. This means that interference effects can be safely ignored. In contrast, soft processes correspond to low 
+momentum transfer and hence long wavelengths. These soft collisions are strongly affected by coherence effects and should not scale linearly with the number of
+binary collisions.
 
-\begin{figure*}
- \includegraphics[width=\textwidth]{three}
-\end{figure*}
+Soft processes are particularly challenging because they are inherently non-perturbative (strong coupling) and thus cannot be calculated using the usual tools
+of perturbative QCD. The Glauber model thus adopts an ansatz for soft particle production and scales soft processes with the number of wounded nucleons, i.e. nucleons 
+which participate in at least one collision. In this picture, successive nucleon collisions change the excited state of the wounded nucleon but do not contribute to 
+overall particle production. The excited nucleons become de-excited once they leave the interaction region and thus generate secondary densities proportional to the 
+initial density of wounded nucleons.
+
+Binary collisions and wounded nucleons are typically counted by considering all possible pairs of nucleon-nucleon collisions which occur with probability
+\begin{equation}
+P_{coll}=
+\begin{cases}
+  1 &\mbox{if } b \le \sqrt{\sigma^{inel}_{NN}/\pi} \\ 
+  0 &\mbox{if } b > \sqrt{\sigma^{inel}_{NN}/\pi},
+\end{cases}
+\end{equation}
+where $b$ denotes the nucleon-nucleon impact parameter and $\sigma^{inel}_{NN}$ the inelastic nucleon-nucleon cross section.
+
+These particle interactions are then converted to smooth density profiles by depositing a small Gaussian about each wounded nucleon coordinate and binary
+collision vertex. The resulting density profiles are then projected onto the transverse plane yielding,
+\begin{eqnarray}
+ \label{BC_WN}
+ \cr BC(x,y) &=& \sum_{i=1}^{N_{coll}} \frac{1}{\sqrt{2 \pi \sigma^2}} e^{ -|\vec{r}_\perp-\vec{r}_{i\perp}|^2/2 \sigma^2 }   \\
+ WN(x,y) &=& \sum_{i=1}^{N_{part}} \frac{1}{\sqrt{2 \pi \sigma^2}} e^{ -|\vec{r}_\perp-\vec{r}_{i\perp}|^2/2 \sigma^2 } .
+\end{eqnarray}
+where the Gaussian deposition width $\sigma$ is a free parameter.
+
+The entropy (or often energy) density of the fireball is finally set proportional to a linear combination of the binary collision and wounded nucleon densities,
+\begin{equation}
+ \frac{dS(x,y)}{d^2r_\perp dy} \propto \frac{1-\alpha}{2} WN(x,y) + \alpha\, BC(x,y),
+\end{equation}
+where $dS(x,y)/d^2r_\perp dy$ is the fireball's transverse entropy density, $\alpha$ is a unitless tunable parameter and $\vec{r}_\perp$ is a position in the 
+transverse plane. We note that the Glauber model projects all densities onto the transverse plane and thus does not resolve any structure along the collision beam axis.
+
+\subsection{Color-Glass Condensate theory}
+
+In Color-Glass Condensate theory, the transverse entropy density at mid-rapidity scales with the density of secondary gluons produced by individual gluon-gluon interactions.
+This density depends on the number of available states, and in turn on the local gluon distribution functions in each colliding nucleon pair. These gluon distribution 
+functions are connected to the underlying nuclear geometry through a parameter known as the saturation scale $Q_s$ via it's dependence on the nuclear thickness 
+functions $T_{A_1}$ and $T_{A_2}$ which describe the transverse opacity of participant nucleons in each nucleus,
+\begin{equation}
+ \label{thickness}
+ T_A(x,y) = \sum\limits_{i=1}^{A} \frac{1}{\sqrt{2 \pi \sigma^2_p}} e^{ -|\vec{r}_\perp-\vec{r}_{i\perp}|^2/2 \sigma_{p}^2 }.  
+\end{equation}
+We note that the nuclear thickness function defined in equation \ref{thickness} is indentical to the wounded nucleon density in equation \ref{BC_WN}, except that the 
+summation runs over nucleons in a single nucleus with Gaussian width $\sigma_{p}$ given by the proton charge radius.
+
+There exist a number of Color-Glass Condensate realizations which convert the nuclear thickness functions $T_{A_1}$ and $T_{A_2}$ defined by equation \ref{thickness} into 
+secondary gluon densities and hence entropy densities at mid-rapidity, but we only discuss one for the sake of brevity.
+
+The Kharzeev-Levin-Nardi (KLN) model is one well known implementation of Color-Glass Condensate effective field theory. In the KLN model, the gluon saturation scale 
+$Q_s$ is parameterized by
+\begin{equation}
+ Q^2_s(x;{\bf r}_\perp) = 2\, \mbox{GeV}^2 \left( \frac{T({\bf r}_\perp)}{T_0} \right) \bigg( \frac{x_0}{x} \bigg)^\lambda,
+\end{equation}
+where $T_0=1.53$ fm$^{-2}$ and $x_0 = 0.01$. Here $x=p_\perp \exp(\pm y)/\sqrt{s}$ is the light-cone momentum fraction of a gluon and $\lambda$ is a 
+dimensionless parameter tuned to fit the observed hadron multiplicity in central collisions.
+ 
+The gluon distribution functions are then expressed in terms of the gluon saturation scale as,
+\begin{equation}
+ \phi(x,k^2_\perp,{\bf r}_\perp) \sim \frac{1}{\alpha_s(Q_s^2)}\frac{Q_s^2}{\max(Q_s^2,k_\perp^2)}
+\end{equation}
+where $k_\perp$ is the transverse momentum of a gluon and $\alpha_s$ specifies the strength of the coupling constant. 
+
+Once the gluon distribution functions are known, the density of produced gluons is calculated by integrating a gluon fusion term over the full collision phase space,
+\begin{eqnarray}
+ \cr \frac{dN_g}{d^2r_\perp dy} &=& \frac{2 \pi^2}{C_F} \int^{p_\perp^{max}} \frac{d^2 p_\perp}{p_\perp^2} \int^{p_\perp} \frac{d^2 k_\perp}{4} \alpha_s(Q_s^2) \\
+ &\times& \phi_1(x_1,({\bf p}_\perp + {\bf k}_\perp)^2/4; {\bf r}_\perp) \\
+ &\times& \phi_2(x_2,({\bf p}_\perp - {\bf k}_\perp)^2/4; {\bf r}_\perp),
+\end{eqnarray}
+where $C_F$ is a color factor, $\phi_1$ and $\phi_2$ are the gluon distribution functions of each nucleus and $p_\perp = p_\perp^1 + p_\perp^2$ and 
+$k_\perp = p_\perp^1 - p_\perp^2$ denote the primary transverse gluon momentum in center of mass coordinates. This furnishes the transverse entropy density up to an 
+overall normalization factor,
+\begin{equation}
+ \frac{dS(x,y)}{d^2r_\perp dy} \propto \frac{dN_g}{d^2r_\perp dy}.
+\end{equation}
+
+\section{The case for new I.C. models}
+
+Originally, collective flow behaviour was thought to only exists in collisions of \emph{heavy} nuclei where the produced fireball is sufficiently large and dense to reach 
+a state of local thermal equillibrium. Proton-lead collisions, on the other hand, were thought to be too small to produce any signatures of collective flow.
+
+It thus came as a great surprise when proton-lead collisions - which were scheduled primarily as a calibration run for larger collisions - produced significant signs of 
+collective behaviour. This discovery raised several key questions within the heavy-ion community:
+\begin{itemize}
+ \item Do small collision systems produce a QGP? 
+ \item Are the hydrodynamic equations of motion valid in small systems?
+ \item If so, how do we unite large and small systems under a single theoretical framework?
+\end{itemize}
+
+The application of the Glauber and KLN models to the full range of collision systems measured at RHIC and the LHC has been carried out with mixed success. The KLN model
+struggles to replicate the full spectrum of measured anisotropic flow coefficients and the Glauber model has problems describing collisions of deformed nuclei, while 
+both models do a poor job describing small collision systems. There is in fact only one model, a CGC derivative called IP-Glasma, which has provided an excellent 
+description of flow harmonics in heavy nuclei at RHIC and the LHC, but even its application to smaller collision systems remains uncertain.
+
+Perhaps even more worrisome than flow inconsistencies, which may simply result from applying hydrodynamics where it's not applicable, are inconsistencies in the description 
+of particle production; there are models which provide satisfactory descriptions of particle production in proton-proton collisions, and there models which provide 
+satisfactory descriptions of particle production in heavy-ion collisions, but very few models do both simultaneously. 
+
+Yet if we look at the density of nuclear overlap in heavy-ion collisions, we see that there are regions of overlap which are identical to those found in light-nucleus 
+collisions. For example, isolated proton-proton collisions frequently occur around the edges of gold-gold collisions. In fact, a wide range of $n$-on-$m$ nucleon-nucleon 
+collisions occur \emph{inside} a single heavy-ion collision. It's thus hard to trust any model which claims to simulate the overall distribution of matter in large nucleus-nucleus collisions without simulatenously describing the 
+distribution of matter produced by all collision sub-fragments. 
+
+\section{Particle production as a mapping}
 
 \begin{figure}
  \includegraphics[height=0.19\textwidth]{motivation1-crop}\\
+ \caption{\label{fig:motivation_beam} Beam view: imaginary Cartesian grid superimposed on top of nuclear overlap region}
  \includegraphics[height=0.13\textwidth]{motivation2-crop}
+ \caption{\label{fig:motivation_side} Side view: Example of a grid cell containing a localized three-on-two nucleon collision}
 \end{figure}
+
+We now firm up the motivation for a composite description of the QGP fireball with a heuristic argument. Imagine that we have the freedom to construct and collide any 
+$m$-on-$n$ combination of $m$ projectile and $n$ target nucleons. The experiment is performed and the average number of charged particles in a fixed 
+interval about mid-rapidity recorded,
+\begin{equation}
+ \label{charged_particles}
+ N_{ch}(|\eta|<\eta_{max};\, n,\, m).
+\end{equation}
+
+For example, the simplest combination of projectile and target nucleons is a $1$-on-$1$ collision of two protons,
+\begin{equation}
+ N_{ch}(|\eta|<1;\, 1,\, 1).
+\end{equation}
+A single proton is then added to the target nucleus, positioned just behind the original target proton in line with the beam axis, and the collision is repeated at the 
+same beam energy yielding a new measurement for a $1$-on-$2$ collision,
+\begin{equation}
+ N_{ch}(|\eta|<1;\, 1,\, 2).
+\end{equation}
+
+At this point you can probably see where we are headed. We continue to extend the projectile and target nuclei by adding  protons to the column of existing protons 
+and record the number of charged particles measured in the collision. We thus build up a two dimensional surface that describes particle production for any $m$-on-$n$ 
+collision. We will now argue that this surface is all we need to approximate entropy deposition in the early stages of a generic nucleus-nucleus collision. 
+
+\section{Reverse engineering the fireball}
+
+Hybid hydrodynamic + Boltzmann transport simulations indicate that, to good approximation, the simulation's initial entropy is a close proxy for final state particle 
+production \cite{Heinz}. This linear correspondence is of course affected by small corrections from viscous entropy production and inelastic collisions in the hadron 
+resonance gas, but nevertheless holds quite well. 
+
+We use this linear relation to revert equation \ref{charged_particles} into a statement about initial entropy deposition,
+\begin{equation}
+ \label{entropy_mapping}
+ N_{ch}(|\eta|<1;\, n,\, m) \propto S(|\eta|<1;\, n,\, m),
+\end{equation}
+where $S$ is the initial entropy deposited in the rapidity interval $|\eta|<1$ by an $m$-on-$n$ collision. 
+
+We now imagine a realistic collision of two heavy nuclei which overlap at some non-zero impact parameter in the transverse plane. We can superimpose an imaginary
+Cartesian grid on top of this overlap region and model each grid cell as an $m$-on-$n$ collision of projectile and target nucleons 
+(see FIG. \ref{fig:motivation_beam}, \ref{fig:motivation_side}). We can then simply read off the value of entropy deposition from equation \ref{entropy_mapping} 
+for each grid cell and renormalize the entire profile to account for the unknown entropy to particle number conversion factor.
+
+Unfortunately, nature will not allow us to construct elongated stacks of protons or even control the orrientation of nuclei when they collide. Therefore we cannot simply
+measure particle production for every possible $m$-on-$n$ collision. Instead, we start from a suitably flexible ansatz for entropy deposition and constrain our ansatz 
+using the full gamut of nucleus-nucleus multiplicity data.
+
+\subsection{Ansatz for entropy deposition}
+
+In our original line of reasoning, we formulated the problem in terms of global quantities such as the \emph{number} of nucleons in the projectile and target.
+We can easily recast expression \ref{entropy_mapping} locally by replacing nucleon number with nuclear density,
+\begin{equation}
+ \frac{dN_{ch}}{d\eta} \propto \frac{dS}{d\eta} \bigg|_{\tau=\tau_0} \propto f(T_A,T_B)
+\end{equation}
+where $T_A$ and $T_B$ are the beam-integrated nuclear densities defined in equation \ref{thickness}.
+
+We insist that the mapping $f$ respect several key properties,
 
 \begin{figure}
  \includegraphics[width=\columnwidth]{saturation}
